@@ -12,6 +12,8 @@ answerBtn.addEventListener('click', () => {
   const val = answerInput.value.trim().toLowerCase();
   if (validAnswers.includes(val)) {
     console.log("Riddle unlocked! Starting gift sequence...");
+    console.log("Gift wrapper visible");
+    console.log("Gift box clicked!");
     unlockScreen.classList.add('hidden');
     mainContainer.classList.remove('hidden');
     startGiftSequence();
