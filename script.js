@@ -56,7 +56,7 @@ function showVoice() {
       playBtn.textContent = "Playing...";
     }).catch(err => {
       console.error("Audio play failed:", err);
-      alert("Audio cannot play. Make sure your browser allows audio playback.");
+      alert("Audio cannot play. Check file path or browser autoplay settings.");
     });
   });
 }
