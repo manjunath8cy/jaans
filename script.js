@@ -6,16 +6,23 @@ const answerInput = document.getElementById('answer-input');
 const answerBtn = document.getElementById('answer-btn');
 const mainContainer = document.getElementById('main-container');
 
+const validAnswers = ["anywhere door", "anywhere-door", "dokodemo door", "dokodemo", "door", "anywheredoor"];
+
 answerBtn.addEventListener('click', () => {
   const val = answerInput.value.trim().toLowerCase();
-  if (["anywhere door", "anywhere-door", "dokodemo door", "dokodemo"].includes(val)) {
+  if (validAnswers.includes(val)) {
     unlockScreen.classList.add('hidden');
     mainContainer.classList.remove('hidden');
     startGiftSequence();
   } else {
     answerInput.value = "";
-    answerInput.placeholder = "nope 😛 try again";
+    answerInput.placeholder = "Nope 😛 try again!";
   }
+});
+
+// Press Enter key support
+answerInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') answerBtn.click();
 });
 
 
@@ -26,7 +33,6 @@ function startGiftSequence() {
   const giftBox = document.getElementById('gift-box');
   const giftWrapper = document.getElementById('gift-box-wrapper');
 
-  // Base64 gift image is set via CSS for cleaner layout
   giftWrapper.classList.remove('hidden');
 
   giftBox.addEventListener('click', () => {
