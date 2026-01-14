@@ -30,7 +30,10 @@ body {
 ============================ */
 #shiva-bg {
   position: absolute;
-  inset: 0;
+  top: -5%; /* move up slightly */
+  left: 0;
+  width: 100%;
+  height: 110%;
   background: url("assets/shiva.png") center/contain no-repeat;
   opacity: 0.22;
   animation: shivaGlow 6s ease-in-out infinite alternate;
@@ -54,7 +57,7 @@ body {
 }
 
 /* ============================
-   PARTICLES LAYER (PETALS + BALLOONS)
+   PARTICLES LAYER
 ============================ */
 #particles-layer {
   position: absolute;
@@ -165,9 +168,10 @@ body {
   padding: 20px;
   padding-top: 35px;
   background: url("assets/letter.png") center/contain no-repeat;
-  color: white;
-  font-size: 15px;       /* smaller font */
-  line-height: 1.2;      /* tight lines */
+  color: #fff6dc;               /* creamy soft text */
+  font-size: 15px;
+  line-height: 1.2;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6); /* subtle glow for readability */
   border-radius: 8px;
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
   overflow: hidden;
@@ -182,10 +186,12 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #ffd27f;
+  text-shadow: 0 0 8px rgba(255,210,127,0.8);
 }
 
 .accent {
-  color: #804000;
+  color: #ffb347;
 }
 
 .letter-body {
@@ -196,7 +202,7 @@ body {
    SHARED PHOTO
 ============================ */
 .shared-photo {
-  max-width: 50%;          /* keep aspect ratio */
+  max-width: 50%; 
   height: auto;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(255,255,255,0.4);
@@ -207,10 +213,9 @@ body {
   animation: flashPhoto 2s ease-in-out infinite alternate;
 }
 
-/* flash animation */
 @keyframes flashPhoto {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.85; }
+  0% { opacity: 1; }
+  50% { opacity: 0.85; }
   100% { opacity: 1; }
 }
 
