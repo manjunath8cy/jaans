@@ -11,6 +11,7 @@ const validAnswers = ["anywhere door", "anywhere-door", "dokodemo door", "dokode
 answerBtn.addEventListener('click', () => {
   const val = answerInput.value.trim().toLowerCase();
   if (validAnswers.includes(val)) {
+    console.log("Riddle unlocked! Starting gift sequence...");
     unlockScreen.classList.add('hidden');
     mainContainer.classList.remove('hidden');
     startGiftSequence();
