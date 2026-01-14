@@ -13,8 +13,10 @@ giftBox.addEventListener('click', () => {
   console.log("Gift box clicked!");
   giftBox.classList.add('open-animation');
 
+  // Hide gift completely after animation
   setTimeout(() => {
     giftWrapper.classList.add('hidden');
+    giftBox.style.display = 'none';
     showLetter();
     launchFireworks();
   }, 1800);
@@ -44,13 +46,18 @@ function showLetter() {
 function showVoice() {
   const voiceWrapper = document.getElementById('voice-wrapper');
   voiceWrapper.classList.remove('hidden');
+  voiceWrapper.style.display = 'flex';
 
   const playBtn = document.getElementById('play-voice');
   const audio = document.getElementById('voice-audio');
 
   playBtn.addEventListener('click', () => {
-    audio.play();
-    playBtn.textContent = "Playing...";
+    audio.play().then(() => {
+      playBtn.textContent = "Playing...";
+    }).catch(err => {
+      console.error("Audio play failed:", err);
+      alert("Audio cannot play. Make sure your browser allows audio playback.");
+    });
   });
 }
 
@@ -112,7 +119,6 @@ function launchFireworks() {
 // DORAEMON SPRITES
 // ============================
 const doraLayer = document.getElementById('doraemon-layer');
-
 function spawnDora() {
   const sprite = document.createElement('div');
   sprite.className = 'dora-sprite';
@@ -120,14 +126,12 @@ function spawnDora() {
   doraLayer.appendChild(sprite);
   setTimeout(()=>sprite.remove(),12000);
 }
-
 setInterval(spawnDora,3000);
 
 // ============================
 // BALLOONS + PETALS
 // ============================
 const particleLayer = document.getElementById('particles-layer');
-
 function spawnParticle() {
   const p = document.createElement('div');
   p.className = Math.random() > 0.6 ? "balloon" : "petal";
@@ -135,5 +139,4 @@ function spawnParticle() {
   particleLayer.appendChild(p);
   setTimeout(()=>p.remove(),15000);
 }
-
 setInterval(spawnParticle,1200);
