@@ -165,10 +165,11 @@ body {
   padding: 20px;
   padding-top: 35px;
   background: url("assets/letter.png") center/contain no-repeat;
-  color: #e0cfa0; /* darker cream for readability */
+  color: #e0cfa0; /* text color */
+  -webkit-text-stroke: 1px #3b2f1b; /* dark stroke for contrast */
+  text-shadow: 0 0 3px rgba(0,0,0,0.6); /* fallback glow/shadow */
   font-size: 15px;
   line-height: 1.2;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.35); /* subtle glow */
   border-radius: 8px;
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
   overflow: hidden;
@@ -183,8 +184,9 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #ffda9c; /* warmer gold */
-  text-shadow: 0 0 6px rgba(255, 218, 156, 0.8);
+  color: #ffda9c;
+  -webkit-text-stroke: 1px #3b2f1b;
+  text-shadow: 0 0 3px rgba(0,0,0,0.6);
 }
 
 .accent {
