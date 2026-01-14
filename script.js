@@ -30,13 +30,34 @@ answerInput.addEventListener('keypress', e => {
 // ---------------------------
 // Gift Box Sequence
 // ---------------------------
+// function startGiftSequence() {
+//   const giftBox = document.getElementById('gift-box');
+//   const giftWrapper = document.getElementById('gift-box-wrapper');
+
+//   giftWrapper.classList.remove('hidden');
+
+//   giftBox.addEventListener('click', () => {
+//     giftBox.classList.add('open-animation');
+
+//     setTimeout(() => {
+//       giftWrapper.classList.add('hidden');
+//       showLetter();
+//       launchFireworks();
+//     }, 1800);
+//   });
+// }
+
+
 function startGiftSequence() {
   const giftBox = document.getElementById('gift-box');
   const giftWrapper = document.getElementById('gift-box-wrapper');
 
   giftWrapper.classList.remove('hidden');
 
+  console.log("Gift wrapper visible:", giftWrapper);
+
   giftBox.addEventListener('click', () => {
+    console.log("Gift box clicked!"); // <-- add this line
     giftBox.classList.add('open-animation');
 
     setTimeout(() => {
@@ -46,6 +67,7 @@ function startGiftSequence() {
     }, 1800);
   });
 }
+
 
 
 // ---------------------------
