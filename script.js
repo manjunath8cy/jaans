@@ -1,67 +1,27 @@
 // ============================
-// UNLOCK RIDDLE LOGIC
-// ============================
-const unlockScreen = document.getElementById('unlock-screen');
-const answerInput = document.getElementById('answer-input');
-const answerBtn = document.getElementById('answer-btn');
-const mainContainer = document.getElementById('main-container');
-
-const validAnswers = [
-  "anywhere door",
-  "anywhere-door",
-  "dokodemo door",
-  "dokodemo",
-  "door",
-  "anywheredoor"
-];
-
-answerBtn.addEventListener('click', () => {
-  const val = answerInput.value.trim().toLowerCase();
-  if (validAnswers.includes(val)) {
-    console.log("Riddle unlocked! Starting gift sequence...");
-    unlockScreen.classList.add('hidden');
-    mainContainer.classList.remove('hidden');
-    startGiftSequence();
-  } else {
-    answerInput.value = "";
-    answerInput.placeholder = "Nope 😛 try again!";
-  }
-});
-
-// Press Enter key support
-answerInput.addEventListener('keypress', e => {
-  if (e.key === 'Enter') answerBtn.click();
-});
-
-// ============================
 // GIFT BOX SEQUENCE
 // ============================
-function startGiftSequence() {
-  const giftBox = document.getElementById('gift-box');
-  const giftWrapper = document.getElementById('gift-box-wrapper');
+const giftBox = document.getElementById('gift-box');
+const giftWrapper = document.getElementById('gift-box-wrapper');
 
-  giftWrapper.classList.remove('hidden');
-  console.log("Gift wrapper visible");
+giftWrapper.classList.remove('hidden');
+giftBox.style.pointerEvents = 'auto';
+giftBox.style.zIndex = '9999';
+giftWrapper.style.zIndex = '9998';
 
-  // Ensure click registers even if layers overlap
-  giftBox.style.pointerEvents = 'auto';
-  giftBox.style.zIndex = 9999;
-  giftWrapper.style.zIndex = '9998';
+giftBox.addEventListener('click', () => {
+  console.log("Gift box clicked!");
+  giftBox.classList.add('open-animation');
 
-  giftBox.addEventListener('click', () => {
-    console.log("Gift box clicked!");
-    giftBox.classList.add('open-animation');
-
-    setTimeout(() => {
-      giftWrapper.classList.add('hidden');
-      showLetter();
-      launchFireworks();
-    }, 1800);
-  });
-}
+  setTimeout(() => {
+    giftWrapper.classList.add('hidden');
+    showLetter();
+    launchFireworks();
+  }, 1800);
+});
 
 // ============================
-// HANDWRITTEN LETTER POPUP
+// LETTER POPUP
 // ============================
 function showLetter() {
   const letterPopup = document.getElementById('letter-popup');
@@ -79,7 +39,7 @@ function showLetter() {
 }
 
 // ============================
-// VOICE MESSAGE PLAYER
+// VOICE MESSAGE
 // ============================
 function showVoice() {
   const voiceWrapper = document.getElementById('voice-wrapper');
@@ -95,7 +55,7 @@ function showVoice() {
 }
 
 // ============================
-// FIREWORKS LOGIC
+// FIREWORKS
 // ============================
 const canvas = document.getElementById('fireworks');
 const ctx = canvas.getContext('2d');
@@ -115,8 +75,7 @@ function createFirework() {
 
   for (let i = 0; i < count; i++) {
     particles.push({
-      x,
-      y,
+      x, y,
       angle: Math.random() * Math.PI * 2,
       speed: Math.random() * 3 + 2,
       opacity: 1
@@ -130,29 +89,27 @@ function updateFireworks() {
     p.x += Math.cos(p.angle) * p.speed;
     p.y += Math.sin(p.angle) * p.speed;
     p.opacity -= 0.01;
-    if (p.opacity <= 0) particles.splice(i, 1);
+    if (p.opacity <= 0) particles.splice(i,1);
   });
-
-  particles.forEach(p => {
-    ctx.globalAlpha = p.opacity;
+  particles.forEach(p=>{
+    ctx.globalAlpha=p.opacity;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle="white";
     ctx.fill();
   });
-
   requestAnimationFrame(updateFireworks);
 }
 
 function launchFireworks() {
   updateFireworks();
-  for (let i = 0; i < 12; i++) {
-    setTimeout(createFirework, i * 400);
+  for(let i=0;i<12;i++){
+    setTimeout(createFirework,i*400);
   }
 }
 
 // ============================
-// DORAEMON FLOATING SPRITES
+// DORAEMON SPRITES
 // ============================
 const doraLayer = document.getElementById('doraemon-layer');
 
@@ -161,11 +118,10 @@ function spawnDora() {
   sprite.className = 'dora-sprite';
   sprite.style.left = Math.random() * 100 + "vw";
   doraLayer.appendChild(sprite);
-
-  setTimeout(() => sprite.remove(), 12000);
+  setTimeout(()=>sprite.remove(),12000);
 }
 
-setInterval(spawnDora, 3000);
+setInterval(spawnDora,3000);
 
 // ============================
 // BALLOONS + PETALS
@@ -175,9 +131,9 @@ const particleLayer = document.getElementById('particles-layer');
 function spawnParticle() {
   const p = document.createElement('div');
   p.className = Math.random() > 0.6 ? "balloon" : "petal";
-  p.style.left = Math.random() * 100 + "vw";
+  p.style.left = Math.random()*100+"vw";
   particleLayer.appendChild(p);
-  setTimeout(() => p.remove(), 15000);
+  setTimeout(()=>p.remove(),15000);
 }
 
-setInterval(spawnParticle, 1200);
+setInterval(spawnParticle,1200);
