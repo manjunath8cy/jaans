@@ -45,7 +45,8 @@ function startGiftSequence() {
 
   // Ensure click registers even if layers overlap
   giftBox.style.pointerEvents = 'auto';
-  giftBox.style.zIndex = 21;
+  giftBox.style.zIndex = 9999;
+  giftWrapper.style.zIndex = '9998';
 
   giftBox.addEventListener('click', () => {
     console.log("Gift box clicked!");
