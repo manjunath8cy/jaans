@@ -9,6 +9,7 @@
 
 body {
   background: #0b0b0c;
+  color: white;
   font-family: "Georgia", serif;
   overflow: hidden;
   height: 100vh;
@@ -53,7 +54,7 @@ body {
 }
 
 /* ============================
-   PARTICLES LAYER
+   PARTICLES LAYER (PETALS + BALLOONS)
 ============================ */
 #particles-layer {
   position: absolute;
@@ -164,13 +165,12 @@ body {
   padding: 20px;
   padding-top: 35px;
   background: url("assets/letter.png") center/contain no-repeat;
-  color: #FFEAC0;             /* soft cream for body text */
-  font-size: 15px;
-  line-height: 1.2;
+  color: white;
+  font-size: 15px;       /* smaller font */
+  line-height: 1.2;      /* tight lines */
   border-radius: 8px;
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
   overflow: hidden;
-  text-shadow: 0 0 6px rgba(255,255,255,0.5); /* subtle glow */
 }
 
 #letter-popup.show .letter-container {
@@ -182,18 +182,21 @@ body {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #FFD87C; /* warm accent for title */
-  text-shadow: 0 0 8px rgba(255,216,124,0.7);
 }
 
-.accent { color: #FFB347; }
-.letter-body { margin-bottom: 10px; }
+.accent {
+  color: #804000;
+}
+
+.letter-body {
+  margin-bottom: 10px;
+}
 
 /* ============================
    SHARED PHOTO
 ============================ */
 .shared-photo {
-  max-width: 50%;
+  max-width: 50%;          /* keep aspect ratio */
   height: auto;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(255,255,255,0.4);
@@ -204,6 +207,7 @@ body {
   animation: flashPhoto 2s ease-in-out infinite alternate;
 }
 
+/* flash animation */
 @keyframes flashPhoto {
   0%   { opacity: 1; }
   50%  { opacity: 0.85; }
@@ -220,6 +224,7 @@ body {
   transform: translateX(-50%);
   z-index: 9999; 
   pointer-events: auto;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -235,7 +240,9 @@ body {
   z-index: 10000;
 }
 
-#play-voice:hover { background: #704000; }
+#play-voice:hover {
+  background: #704000;
+}
 
 /* ============================
    MOBILE
