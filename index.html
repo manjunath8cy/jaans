@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday, Jaans</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="unlock-screen" class="active">
+  <h2>To continue, answer this:</h2>
+  <p>What is Doraemon's favorite tool?</p>
+  <input id="riddle-input" placeholder="your answer...">
+  <button id="riddle-btn">Unlock</button>
+</div>
+
+<div id="main-content">
+  
+  <canvas id="fireworks"></canvas>
+
+  <div id="gift-container">
+    <img id="gift-box" src="assets/gift/gift-closed.png">
+  </div>
+
+  <div id="letter-popup">
+    <img class="parchment" src="assets/letter/parchment.png">
+    <div class="letter-text">
+      <h2>Happy 24th Birthday, Jaans</h2>
+      <p>May Shiva keep your spirit wild, radiant and free.</p>
+      <p>In a world full of billions, fate decided our paths should cross — only one picture, yet countless memories we cherish.</p>
+      <p>We laugh at Doraemon, we tease, we argue, we grow — and I adore every version of you.</p>
+      <p>You’re fierce like a cadet, soft like a dreamer, and playful like a child chasing butterflies.</p>
+      <p>And oh, what a beautiful thing it is that you exist.</p>
+    </div>
+    <button id="close-letter">Close</button>
+  </div>
+
+  <div id="voice-player">
+    <audio id="voice" src="audio/voice.mp3"></audio>
+    <button id="voice-play">Play Voice</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
