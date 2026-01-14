@@ -1,85 +1,60 @@
-// ============================
-// GIFT BOX SEQUENCE
-// ============================
-const giftBox = document.getElementById('gift-box');
-const giftWrapper = document.getElementById('gift-box-wrapper');
+// ---------------------------
+// Unlock Riddle Logic
+// ---------------------------
+const unlockScreen = document.getElementById('unlock-screen');
+const answerInput = document.getElementById('answer-input');
+const answerBtn = document.getElementById('answer-btn');
+const mainContainer = document.getElementById('main-container');
 
-giftWrapper.classList.remove('hidden');
-giftBox.style.pointerEvents = 'auto';
-giftBox.style.zIndex = '9999';
-giftWrapper.style.zIndex = '9998';
-
-giftBox.addEventListener('click', () => {
-  giftBox.classList.add('open-animation');
-
-  // Hide gift completely after animation
-  setTimeout(() => {
-    giftWrapper.classList.add('hidden');
-    giftBox.style.display = 'none';
-    showLetter();
-    launchFireworks();
-  }, 1800);
+answerBtn.addEventListener('click', () => {
+  unlockScreen.classList.add('hidden');
+  mainContainer.classList.remove('hidden');
+  startGiftSequence();
 });
 
-// ============================
-// LETTER POPUP
-// ============================
+answerInput.addEventListener('keypress', e => {
+  if (e.key === 'Enter') answerBtn.click();
+});
+
+// ---------------------------
+// Gift Box Sequence
+// ---------------------------
+function startGiftSequence() {
+  const giftBox = document.getElementById('gift-box');
+  const giftWrapper = document.getElementById('gift-box-wrapper');
+
+  giftWrapper.classList.remove('hidden');
+
+  giftBox.addEventListener('click', () => {
+    giftBox.classList.add('open-animation');
+
+    setTimeout(() => {
+      giftWrapper.classList.add('hidden');
+      showLetter();
+      launchFireworks();
+    }, 800); // shorter delay
+  });
+}
+
+// ---------------------------
+// Handwritten Letter Popup
+// ---------------------------
 function showLetter() {
   const letterPopup = document.getElementById('letter-popup');
   letterPopup.classList.remove('hidden');
-  letterPopup.classList.add('show');
 
   const closeLetter = document.getElementById('close-letter');
   closeLetter.addEventListener('click', () => {
-    letterPopup.classList.remove('show');
-    setTimeout(() => {
-      letterPopup.classList.add('hidden');
-      showVoice();
-    }, 400);
+    letterPopup.classList.add('hidden');
+    showVoice();
   });
-
-  // start floating photo animation
-  animatePhoto();
 }
 
-// ============================
-// FLOATING / MOVING PHOTO
-// ============================
-function animatePhoto() {
-  const photo = document.querySelector(".shared-photo");
-  if (!photo) return;
-
-  const maxX = window.innerWidth - photo.offsetWidth;
-  const maxY = window.innerHeight - photo.offsetHeight;
-
-  let posX = photo.offsetLeft;
-  let posY = photo.offsetTop;
-
-  let deltaX = 1 + Math.random() * 1.5; // horizontal speed
-  let deltaY = 1 + Math.random() * 1.5; // vertical speed
-
-  function move() {
-    posX += deltaX;
-    posY += deltaY;
-
-    // bounce off edges
-    if(posX < 0 || posX > maxX) deltaX *= -1;
-    if(posY < 0 || posY > maxY) deltaY *= -1;
-
-    photo.style.left = posX + "px";
-    photo.style.top = posY + "px";
-
-    requestAnimationFrame(move);
-  }
-  move();
-}
-
-// ============================
-// VOICE MESSAGE
-// ============================
+// ---------------------------
+// Voice Message
+// ---------------------------
 function showVoice() {
   const voiceWrapper = document.getElementById('voice-wrapper');
-  voiceWrapper.classList.remove('hidden');
   voiceWrapper.style.display = 'flex';
 
   const playBtn = document.getElementById('play-voice');
@@ -95,9 +70,9 @@ function showVoice() {
   });
 }
 
-// ============================
-// FIREWORKS
-// ============================
+// ---------------------------
+// Fireworks Logic
+// ---------------------------
 const canvas = document.getElementById('fireworks');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -111,7 +86,7 @@ window.addEventListener('resize', resizeCanvas);
 
 function createFirework() {
   const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height / 2;
+  const y = Math.random() * (canvas.height / 2);
   const count = 40 + Math.random() * 40;
 
   for (let i = 0; i < count; i++) {
@@ -132,13 +107,15 @@ function updateFireworks() {
     p.opacity -= 0.01;
     if (p.opacity <= 0) particles.splice(i,1);
   });
-  particles.forEach(p=>{
-    ctx.globalAlpha=p.opacity;
+
+  particles.forEach(p => {
+    ctx.globalAlpha = p.opacity;
     ctx.beginPath();
     ctx.arc(p.x,p.y,2,0,Math.PI*2);
     ctx.fillStyle="white";
     ctx.fill();
   });
+
   requestAnimationFrame(updateFireworks);
 }
 
@@ -149,27 +126,27 @@ function launchFireworks() {
   }
 }
 
-// ============================
-// DORAEMON SPRITES
-// ============================
+// ---------------------------
+// Doraemon Sprites
+// ---------------------------
 const doraLayer = document.getElementById('doraemon-layer');
 function spawnDora() {
   const sprite = document.createElement('div');
   sprite.className = 'dora-sprite';
-  sprite.style.left = Math.random() * 100 + "vw";
+  sprite.style.left = Math.random()*100 + "vw";
   doraLayer.appendChild(sprite);
   setTimeout(()=>sprite.remove(),12000);
 }
 setInterval(spawnDora,3000);
 
-// ============================
-// BALLOONS + PETALS
-// ============================
+// ---------------------------
+// Balloons + Petals
+// ---------------------------
 const particleLayer = document.getElementById('particles-layer');
 function spawnParticle() {
   const p = document.createElement('div');
-  p.className = Math.random() > 0.6 ? "balloon" : "petal";
-  p.style.left = Math.random()*100+"vw";
+  p.className='particle';
+  p.style.left = Math.random()*100 + "vw";
   particleLayer.appendChild(p);
   setTimeout(()=>p.remove(),15000);
 }
