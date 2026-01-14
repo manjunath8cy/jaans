@@ -32,7 +32,7 @@ function startGiftSequence() {
       giftWrapper.classList.add('hidden');
       showLetter();
       launchFireworks();
-    }, 800); // shorter delay
+    }, 800);
   });
 }
 
@@ -46,29 +46,23 @@ function showLetter() {
   const closeLetter = document.getElementById('close-letter');
   closeLetter.addEventListener('click', () => {
     letterPopup.classList.add('hidden');
-    showVoice();
   });
 }
 
 // ---------------------------
 // Voice Message
 // ---------------------------
-function showVoice() {
-  const voiceWrapper = document.getElementById('voice-wrapper');
-  voiceWrapper.style.display = 'flex';
+const playBtn = document.getElementById('play-voice');
+const audio = document.getElementById('voice-audio');
 
-  const playBtn = document.getElementById('play-voice');
-  const audio = document.getElementById('voice-audio');
-
-  playBtn.addEventListener('click', () => {
-    audio.play().then(() => {
-      playBtn.textContent = "Playing...";
-    }).catch(err => {
-      console.error("Audio play failed:", err);
-      alert("Audio cannot play. Check file path or browser autoplay settings.");
-    });
+playBtn.addEventListener('click', () => {
+  audio.play().then(() => {
+    playBtn.textContent = "Playing...";
+  }).catch(err => {
+    console.error("Audio play failed:", err);
+    alert("Audio cannot play. Check file path or browser autoplay settings.");
   });
-}
+});
 
 // ---------------------------
 // Fireworks Logic
