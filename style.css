@@ -18,6 +18,7 @@ body {
 }
 
 .hidden { display: none; }
+
 .centered-screen {
   position: absolute;
   inset: 0;
@@ -81,7 +82,7 @@ body {
 
 
 /* ============================
-   SHIVA SILHOUETTE AURA (BASE64)
+   SHIVA SILHOUETTE AURA
 ============================ */
 
 #shiva-bg {
@@ -94,11 +95,7 @@ body {
   animation: shivaGlow 6s ease-in-out infinite alternate;
   z-index: 1;
   pointer-events: none;
-}
-
-/* BASE64 IMAGE */
-#shiva-bg {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED_FOR_BREVITY>...");
+  background-image: url("assets/shiva.png");
 }
 
 @keyframes shivaGlow {
@@ -131,8 +128,7 @@ body {
   overflow: hidden;
 }
 
-
-/* PETAL FLOAT BASE64 */
+/* PETALS */
 .petal {
   position: absolute;
   width: 28px;
@@ -141,13 +137,10 @@ body {
   background-repeat: no-repeat;
   animation: fall linear infinite;
   opacity: 0.85;
+  background-image: url("assets/petal.png");
 }
 
-.petal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
-}
-
-/* BALLOON BASE64 */
+/* BALLOONS */
 .balloon {
   position: absolute;
   width: 36px;
@@ -155,10 +148,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   animation: floatUp linear infinite;
-}
-
-.balloon {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+  background-image: url("assets/balloon.png");
 }
 
 @keyframes fall {
@@ -183,18 +173,14 @@ body {
   pointer-events: none;
 }
 
-/* Base64 Doraemon PNG */
-.dora {
+.dora-sprite {
   position: absolute;
   width: 55px;
   height: 55px;
   background-size: contain;
   background-repeat: no-repeat;
   animation: doraFloat 4s ease-in-out infinite alternate;
-}
-
-.dora {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+  background-image: url("assets/dora.png");
 }
 
 @keyframes doraFloat {
@@ -204,7 +190,7 @@ body {
 
 
 /* ============================
-   GIFT BOX (BASE64 SPRITES)
+   GIFT BOX
 ============================ */
 
 .gift-center {
@@ -219,14 +205,9 @@ body {
   width: 200px;
   cursor: pointer;
   transition: transform 0.3s;
+  /* remove previous base64 content */
 }
 
-/* CLOSED BOX */
-#gift-box {
-  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
-}
-
-/* The “opened” sprites will be swapped in JS */
 
 /* ============================
    LETTER (PARCHMENT)
@@ -241,21 +222,19 @@ body {
   z-index: 10;
 }
 
-/* letter container */
 .letter-container {
   transform: scale(0);
   opacity: 0;
   transition: 0.6s;
 }
 
-/* parchment base64 */
 .letter-paper {
   width: 90vw;
   max-width: 560px;
   padding: 24px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+  background-image: url("assets/letter.png");
   color: #3d1f00;
   font-size: 17px;
   border-radius: 8px;
@@ -280,7 +259,6 @@ body {
   to { opacity: 1; }
 }
 
-/* show animation */
 #letter-popup.show .letter-container {
   transform: scale(1);
   opacity: 1;
@@ -313,6 +291,7 @@ body {
 .btn:hover {
   background: #704000;
 }
+
 
 /* ============================
    VOICE BUTTON
