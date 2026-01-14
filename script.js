@@ -10,7 +10,6 @@ giftBox.style.zIndex = '9999';
 giftWrapper.style.zIndex = '9998';
 
 giftBox.addEventListener('click', () => {
-  console.log("Gift box clicked!");
   giftBox.classList.add('open-animation');
 
   // Hide gift completely after animation
@@ -38,6 +37,41 @@ function showLetter() {
       showVoice();
     }, 400);
   });
+
+  // start floating photo animation
+  animatePhoto();
+}
+
+// ============================
+// FLOATING / MOVING PHOTO
+// ============================
+function animatePhoto() {
+  const photo = document.querySelector(".shared-photo");
+  if (!photo) return;
+
+  const maxX = window.innerWidth - photo.offsetWidth;
+  const maxY = window.innerHeight - photo.offsetHeight;
+
+  let posX = photo.offsetLeft;
+  let posY = photo.offsetTop;
+
+  let deltaX = 1 + Math.random() * 1.5; // horizontal speed
+  let deltaY = 1 + Math.random() * 1.5; // vertical speed
+
+  function move() {
+    posX += deltaX;
+    posY += deltaY;
+
+    // bounce off edges
+    if(posX < 0 || posX > maxX) deltaX *= -1;
+    if(posY < 0 || posY > maxY) deltaY *= -1;
+
+    photo.style.left = posX + "px";
+    photo.style.top = posY + "px";
+
+    requestAnimationFrame(move);
+  }
+  move();
 }
 
 // ============================
