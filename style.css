@@ -163,9 +163,11 @@ body {
   width: 90vw;
   max-width: 560px;
   padding: 24px;
+  padding-top: 40px; /* move text down slightly */
   background: url("assets/letter.png") center/contain no-repeat;
-  color: #3d1f00;
+  color: white; /* white text */
   font-size: 17px;
+  line-height: 1.35; /* closer line spacing */
   border-radius: 8px;
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
 }
@@ -173,11 +175,11 @@ body {
 .photo-center {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .shared-photo {
-  max-width: 80%;
+  max-width: 60%; /* smaller photo */
   border-radius: 12px;
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
   animation: fadeIn 1.2s ease forwards;
@@ -204,7 +206,6 @@ body {
 }
 
 .letter-body {
-  line-height: 1.55;
   margin-bottom: 18px;
 }
 
@@ -226,9 +227,10 @@ body {
 ============================ */
 #voice-wrapper {
   position: absolute;
-  bottom: 5%;
-  right: 3%;
-  z-index: 9999;       /* topmost */
+  bottom: 12%;  /* moved up */
+  left: 50%;    /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 9999; 
   pointer-events: auto;
   display: flex;
   flex-direction: column;
@@ -255,7 +257,7 @@ body {
    MOBILE
 ============================ */
 @media(max-width:540px){
-  .letter-paper { font-size: 15px; padding: 18px; }
+  .letter-paper { font-size: 15px; padding: 18px; padding-top: 30px; }
   #gift-box { width: 160px; }
   #play-voice { font-size: 14px; padding: 10px 16px; }
 }
