@@ -262,6 +262,24 @@ body {
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
 }
 
+.photo-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.shared-photo {
+  max-width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
 /* show animation */
 #letter-popup.show .letter-container {
   transform: scale(1);
