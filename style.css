@@ -1,72 +1,323 @@
-body {
+/* ============================
+   GLOBAL
+============================ */
+
+* {
   margin: 0;
-  background: #0d0d0d;
-  color: white;
-  font-family: 'Georgia', serif;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#unlock-screen {
+body {
+  background: #0b0b0c;
+  color: white;
+  font-family: "Georgia", serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.hidden { display: none; }
+.centered-screen {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: black;
-  gap: 10px;
+  gap: 14px;
+  background: #000000;
+  z-index: 9999;
 }
 
-#unlock-screen.active { display: flex; }
-#unlock-screen.hidden { display: none; }
-
-#main-content {
-  display: none;
+.title {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-#gift-container {
+.riddle {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+#accent {
+  color: #ffde7d;
+}
+
+/* Unlock input/button */
+#answer-input {
+  padding: 10px 14px;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 240px;
+}
+
+#answer-btn {
+  padding: 10px 16px;
+  font-size: 16px;
+  background: #4c92ff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#answer-btn:hover {
+  background: #3378e9;
+}
+
+
+/* ============================
+   MAIN CONTAINER
+============================ */
+
+#main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+/* ============================
+   SHIVA SILHOUETTE AURA (BASE64)
+============================ */
+
+#shiva-bg {
   position: absolute;
-  bottom: 10%;
+  inset: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.22;
+  animation: shivaGlow 6s ease-in-out infinite alternate;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* BASE64 IMAGE */
+#shiva-bg {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED_FOR_BREVITY>...");
+}
+
+@keyframes shivaGlow {
+  0% { filter: drop-shadow(0 0 4px #005eff); }
+  100% { filter: drop-shadow(0 0 18px #48b0ff); }
+}
+
+
+/* ============================
+   FIREWORKS CANVAS
+============================ */
+
+#fireworks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* ============================
+   PARTICLES LAYER (PETALS + BALLOONS)
+============================ */
+
+#particles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+
+/* PETAL FLOAT BASE64 */
+.petal {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: fall linear infinite;
+  opacity: 0.85;
+}
+
+.petal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+}
+
+/* BALLOON BASE64 */
+.balloon {
+  position: absolute;
+  width: 36px;
+  height: 58px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: floatUp linear infinite;
+}
+
+.balloon {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(120vh) rotate(200deg); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(110vh) translateX(0); }
+  100% { transform: translateY(-20vh) translateX(20px); }
+}
+
+
+/* ============================
+   DORAEMON SPRITES
+============================ */
+
+#doraemon-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Base64 Doraemon PNG */
+.dora {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: doraFloat 4s ease-in-out infinite alternate;
+}
+
+.dora {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+}
+
+@keyframes doraFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-24px); }
+}
+
+
+/* ============================
+   GIFT BOX (BASE64 SPRITES)
+============================ */
+
+.gift-center {
+  position: absolute;
   left: 50%;
+  bottom: 9%;
   transform: translateX(-50%);
+  z-index: 6;
 }
 
 #gift-box {
   width: 200px;
   cursor: pointer;
+  transition: transform 0.3s;
 }
+
+/* CLOSED BOX */
+#gift-box {
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+}
+
+/* The “opened” sprites will be swapped in JS */
+
+/* ============================
+   LETTER (PARCHMENT)
+============================ */
 
 #letter-popup {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  background: transparent;
-  transition: 0.5s;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-#letter-popup.show {
-  transform: translate(-50%, -50%) scale(1);
+/* letter container */
+.letter-container {
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.6s;
 }
 
-.parchment {
-  width: 500px;
-  filter: drop-shadow(0 0 20px #ffefa8);
+/* parchment base64 */
+.letter-paper {
+  width: 90vw;
+  max-width: 560px;
+  padding: 24px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...<TRUNCATED>...");
+  color: #3d1f00;
+  font-size: 17px;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
 }
 
-.letter-text {
-  position: absolute;
-  top: 20%;
-  width: 70%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #4b2a00;
-  font-size: 18px;
-  line-height: 1.5;
+/* show animation */
+#letter-popup.show .letter-container {
+  transform: scale(1);
+  opacity: 1;
 }
 
-#voice-player {
+.letter-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.accent {
+  color: #804000;
+}
+
+.letter-body {
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.btn {
+  padding: 10px 16px;
+  background: #5a3200;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #704000;
+}
+
+/* ============================
+   VOICE BUTTON
+============================ */
+
+#voice-wrapper {
   position: absolute;
   bottom: 3%;
   right: 3%;
+  z-index: 9;
+}
+
+
+/* ============================
+   MOBILE RESPONSIVE
+============================ */
+
+@media(max-width: 540px) {
+  .letter-paper {
+    font-size: 15px;
+    padding: 18px;
+  }
+  #gift-box {
+    width: 160px;
+  }
 }
