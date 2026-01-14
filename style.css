@@ -16,7 +16,7 @@ body { background:#0b0b0c; color:white; font-family:"Georgia", serif; overflow:h
 
 /* SHIVA BACKGROUND */
 #shiva-bg { position:absolute; inset:0; background:url("assets/shiva.png") center/contain no-repeat; opacity:0.22; animation:shivaGlow 6s ease-in-out infinite alternate; z-index:1; pointer-events:none; }
-@keyframes shivaGlow { 0% { filter:drop-shadow(0 0 4px #005eff); } 100% { filter:drop-shadow(0 0 18px #48b0ff); } }
+@keyframes shivaGlow { 0%{filter:drop-shadow(0 0 4px #005eff);} 100%{filter:drop-shadow(0 0 18px #48b0ff);} }
 
 /* FIREWORKS */
 #fireworks { position:absolute; inset:0; z-index:2; pointer-events:none; }
