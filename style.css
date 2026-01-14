@@ -162,32 +162,15 @@ body {
 .letter-paper {
   width: 90vw;
   max-width: 560px;
-  padding: 24px;
-  padding-top: 40px; /* move text down slightly */
+  padding: 20px;
+  padding-top: 35px;
   background: url("assets/letter.png") center/contain no-repeat;
-  color: white; /* white text */
-  font-size: 17px;
-  line-height: 1.35; /* closer line spacing */
+  color: white;
+  font-size: 15px;       /* smaller font */
+  line-height: 1.2;      /* tight lines */
   border-radius: 8px;
   box-shadow: 0 0 18px rgba(255, 235, 168, 0.6);
-}
-
-.photo-center {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.shared-photo {
-  max-width: 60%; /* smaller photo */
-  border-radius: 12px;
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-  animation: fadeIn 1.2s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
+  overflow: hidden;
 }
 
 #letter-popup.show .letter-container {
@@ -198,7 +181,7 @@ body {
 .letter-title {
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .accent {
@@ -206,20 +189,29 @@ body {
 }
 
 .letter-body {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
-.btn {
-  padding: 10px 16px;
-  background: #5a3200;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* ============================
+   SHARED PHOTO
+============================ */
+.shared-photo {
+  max-width: 50%;          /* keep aspect ratio */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.4);
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  z-index: 25;
+  animation: flashPhoto 2s ease-in-out infinite alternate;
 }
 
-.btn:hover {
-  background: #704000;
+/* flash animation */
+@keyframes flashPhoto {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 1; }
 }
 
 /* ============================
@@ -227,8 +219,8 @@ body {
 ============================ */
 #voice-wrapper {
   position: absolute;
-  bottom: 12%;  /* moved up */
-  left: 50%;    /* center horizontally */
+  bottom: 12%;
+  left: 50%;
   transform: translateX(-50%);
   z-index: 9999; 
   pointer-events: auto;
@@ -246,7 +238,6 @@ body {
   border: none;
   cursor: pointer;
   z-index: 10000;
-  pointer-events: auto;
 }
 
 #play-voice:hover {
@@ -257,7 +248,8 @@ body {
    MOBILE
 ============================ */
 @media(max-width:540px){
-  .letter-paper { font-size: 15px; padding: 18px; padding-top: 30px; }
+  .shared-photo { max-width: 40%; }
+  .letter-paper { font-size: 14px; padding: 15px; padding-top: 30px; line-height: 1.15; }
   #gift-box { width: 160px; }
   #play-voice { font-size: 14px; padding: 10px 16px; }
 }
